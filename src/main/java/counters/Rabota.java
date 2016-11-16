@@ -13,10 +13,11 @@ public class Rabota implements Counter {
         if (language.equals("C#")) language = "c%23";
         if (language.equals("C++")) language = "c%2B%2B";
 
-        Document doc = Jsoup.connect("http://rabota.ua/ua/jobsearch/vacancy_list?keyWords=" + language + "&parentId=1").get();
+        Document doc = Jsoup.connect("http://rabota.ua/ua/jobsearch/vacancy_list?keyWords=" + language ).get();
         String content = doc.select("span:contains(знайден)").toString();
         Pattern pattern = Pattern.compile("[^\\d]*");
         return Integer.parseInt(pattern.matcher(content).replaceAll(""));
 
     }
 }
+// + "&parentId=1"
